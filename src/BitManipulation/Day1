@@ -1,0 +1,42 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+public class Main
+{
+    public static boolean checkEvenOdd(int num){
+        return (num&1)==0;
+        
+    }
+    public static boolean bitsetOrNot(int num,int pos){
+        return (num & (1<<pos))!=0;
+        
+    }
+    public static int SetBit(int num,int pos){
+        return (num | (1<<pos));
+    }
+    public static int RemoveLSBit(int num){
+        return
+        num =num & (num-1);
+    }
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		int num =5;
+		int pos=4;
+	    boolean res=checkEvenOdd(num);
+	    System.out.println(res);
+	    
+	    boolean res1=bitsetOrNot(num,pos);
+	    System.out.println(res1);
+		
+		int n=RemoveLSBit(num);
+		 System.out.println(n);
+		
+		
+	
+	}
+}
