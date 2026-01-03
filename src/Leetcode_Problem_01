@@ -1,0 +1,93 @@
+=======================================================================================
+Two sum
+===========================================================================================
+
+// public static int[] IndexOfSumofTwoNum(int []arr,int target){
+    //     //O(n) sc=o(1)
+    //     int ans=arr[0];
+    //     for(int i=1;i<arr.length;i++){
+    //      if(arr[i]+ans==target){
+    //          return new int[]{i,i-1};
+    //      }
+    //      return new int[]{-1,-1};
+    //     }
+    // } 
+    
+    //Brute force approch 
+      public static int[] IndexOfSumofTwoNum(int []arr,int target){
+       //Tc=O(n^2)  Sc=O(1)
+        for(int i=0;i<arr.length;i++){
+            for(int j=i+1;j<arr.length;j++){
+                //all pairs will be checked 
+              if(arr[i]+arr[j]==target){
+                  return new int[]{i,j};
+              }  
+            }
+        }
+         return new int[]{-1,-1};
+        }
+        
+        //Optimal case :  
+         public static int[] OptimalIndexOfSumofTwoNum(int []arr,int target){
+       //Tc=O(n)  Sc=O(n)
+       //key(Num)  value(index)
+       HashMap<Integer,Integer> map = new HashMap<>();
+       for(int i=0;i<arr.length;i++){
+          int complement = target - arr[i];
+          if(map.containsKey(complement)){
+              return new int[]{map.get(complement),i}
+          }
+          map.put(arr[i],i));
+       }
+         }
+         return new int[]{-1,-1};
+            
+    }
+
+==========================================================
+Valid Parenthesis
+=============================================================
+
+/*
+   Problem Statement
+
+Given a string s containing only the characters:
+
+'(', ')', '{', '}', '[', ']'
+
+
+Determine if the input string is valid.
+
+A string is valid if:
+
+Open brackets are closed by the same type
+
+Open brackets are closed in the correct order
+
+Every closing bracket has a corresponding opening bracket
+   */
+   public static boolean isValidParenthesis(String s){
+       Stack<Character> st = new Stack<>();
+       for(int i=0;i<s.length();i++){
+       char ch = s.charAt(i);
+       if(ch=='(' || ch =='{' || ch=='['){
+           st.push(ch);
+       }else{
+           if(st.isEmpty()) return false;
+     
+       char top = st.pop();
+       
+       if((ch==')'&& top !='(')||
+         (ch=='}' && top !='{') ||
+         (ch==']' && top != '[')
+       ){
+           return false;
+       }
+       
+       } 
+       }
+       return st.isEmpty();
+   }
+
+
+    
