@@ -1,0 +1,32 @@
+TC: O(M*N) SC:O(M+N)
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        // Your code goes here
+        int m=matrix.length;
+        int n=matrix[0].length;
+        //marker
+        boolean[]rows = new boolean[m];
+        boolean[]cols = new boolean[n];
+
+        //identifying zero based element
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    rows[i]=true;
+                    cols[j]=true;
+                }
+            }
+        }
+
+
+        //set corresponding rows and cols to setZeroes
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+              if(rows[i] || cols[j]){
+                matrix[i][j]=0;
+              }
+            }
+        }
+    }
+}
