@@ -1,5 +1,10 @@
+====================================================================
+Set Matrix to Zero
+=====================================================================
+Brute force
+======================================================================
 TC: O(M*N) SC:O(M+N)
-
+=======================================================================
 class Solution {
     public void setZeroes(int[][] matrix) {
         // Your code goes here
@@ -28,5 +33,74 @@ class Solution {
               }
             }
         }
+    }
+}
+
+===========================================================
+“I used the first row and first column as markers to track which rows and columns 
+need to be zeroed, while two booleans preserve their original state.”
+============================================================
+Optimal Approach->TC:O(M*N) SC: O(1)
+============================================================
+//TC: O(M*N) SC:O(1)
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        // Your code goes here
+       int m = matrix.length;
+       int n = matrix[0].length;
+     
+     //marker
+     boolean firstRowZero = false;
+     boolean firstcolZero = false;
+
+       for(int i=0;i<m;i++){
+        if(matrix[i][0]==0){
+            firstcolZero=true;
+            break;
+        }
+       }
+
+       for(int i=0;i<n;i++){
+        if(matrix[0][i]==0){
+            firstRowZero=true;
+            break;
+        }
+       }
+
+
+  // Step 3: Use first row & column as markers
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+
+       //set zero based on marker
+       for(int i=1;i<m;i++){
+        for(int j=1;j<n;j++){
+            if(matrix[i][0]==0 || matrix[0][j]==0){
+                matrix[i][j]=0;
+            }
+        }
+       }
+
+       if(firstRowZero){
+        for(int j=0;j<n;j++){
+            matrix[0][j]=0;
+        }
+       }
+
+       if(firstcolZero){
+        for(int i=0;i<m;i++){
+            matrix[i][0]=0;
+        }
+       }
+
+
     }
 }
