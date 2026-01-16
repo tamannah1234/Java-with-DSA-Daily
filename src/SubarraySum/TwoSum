@@ -1,0 +1,47 @@
+/******************************************************************************
+TWO SUM PROVLEM FORM BRUTE FORCE TO OPTIMAL
+NOTE: TWO POINTER IS EFFICIENT FOR RETURNING BOOLEAN OUTPUT
+FOR OPTIMAL : USE HASHMAP
+*******************************************************************************/
+import java.util.HashMap;
+public class Main
+{
+    public static int [] twoSum(int[] nums, int target) {
+        int n = nums.length;
+          for (int i = 0; i < n; i++) {
+              for (int j= i+1; j < n; j++) {  
+                  if(nums[i]+nums[j]==target){
+                      return  new int[] {i,j};
+                  }
+              }
+          }
+          return new int[] {-1,-1};
+    }
+    public static int [] OptimaltwoSum(int[] nums, int target) {
+        // store in map as key=value value = Index
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int needed = target - nums[i];
+            if(map.containsKey(needed)){
+                return new int[]{map.get(needed),i};
+            }
+            map.put(nums[i],i);
+        }
+        return new int[]{-1,-1};
+    }
+    
+    
+    
+	public static void main(String[] args) {
+		//System.out.println("Hello World");
+		int arr[]={1,2,3,4};
+		int target = 7;
+		
+     int res[] = OptimaltwoSum(arr,target);
+     for(int i=0;i<res.length;i++){
+         	System.out.print(res[i] + " ");
+     }
+		
+		
+	}
+}
