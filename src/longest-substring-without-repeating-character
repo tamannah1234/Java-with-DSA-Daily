@@ -1,0 +1,52 @@
+import java.util.HashSet;
+
+==============================================
+Brute force approach TC: O(N^3) SC:O(N)
+================================================
+class Solution {
+    public int longestNonRepeatingSubstring(String s) {
+        //your code goes here
+    //Brute force approach
+    int n = s.length();
+    int maxLen = 0;
+    for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+          if(isUniquePair(s,i,j)){
+            maxLen = Math.max(maxLen,j-i+1);
+          } 
+        }
+    }
+    return maxLen;
+    }
+    public boolean isUniquePair(String s,int start,int end){
+    HashSet<Character> set = new HashSet<>();
+     for(int i=start;i<=end;i++){
+        if(set.contains(s.charAt(i))){
+            return false;
+        }
+        set.add(s.charAt(i));
+     }
+     return true;   
+    }
+}
+==============================================
+Optimal approach TC: O(N) SC:O(N)
+================================================
+class Solution {
+    public int longestNonRepeatingSubstring(String s) {
+    HashSet<Character> set = new HashSet<>();
+    //sliding window approach
+    int left =0;
+    int maxLen=0;
+    int n = s.length();
+    for(int right=0;right<n;right++){
+      while(set.contains(s.charAt(right))){
+      set.remove(s.charAt(left));
+      left++;
+      }
+      set.add(s.charAt(right));
+      maxLen = Math.max(maxLen,right-left+1);
+    }
+return maxLen;
+     } 
+}
