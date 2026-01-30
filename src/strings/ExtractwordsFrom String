@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("Hello World");
+
+        String email1 = "Tamanna@gmail.com,Ravi@hotmail.com";
+
+        String[] emails = email1.split(",");
+
+        Map<String, String> map = new HashMap<>();
+
+        for (int i = 0; i < emails.length; i++) {
+            String[] parts = emails[i].split("@");
+
+            String name = parts[0];
+            String provider = parts[1].split("\\.")[0];
+
+            map.put(name, provider);
+        }
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+    }
+}
