@@ -30,7 +30,7 @@ class Solution {
     }
 }
 ==============================================
-Optimal approach TC: O(N) SC:O(N)
+Optimal approach TC: O(N) SC:O(N)  [*]
 ================================================
 class Solution {
     public int longestNonRepeatingSubstring(String s) {
